@@ -1,14 +1,20 @@
 package com.tsw.pageobjecttemplate.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 
 // page_url = https://www.jetbrains.com/
 public class MainPage {
-    public SelenideElement seeDeveloperToolsButton = $x("//*[@data-test-marker='Developer Tools']");
-    public SelenideElement findYourToolsButton = $x("//*[@data-test='suggestion-action']");
-    public SelenideElement toolsMenu = $x("//div[@data-test='main-menu-item' and @data-test-marker = 'Developer Tools']");
-    public SelenideElement searchButton = $("[data-test='site-header-search-action']");
+
+    public SelenideElement inputField = $("[data-testid='text-input']");
+    public SelenideElement itemCreated = $("[data-testid='todo-item-label']");
+    public SelenideElement itemFirstCreated = $(By.xpath("//label[@data-testid='todo-item-label' and contains(text(), '1.Play')]"));
+    public SelenideElement itemSecondCreated = $(By.xpath("//label[@data-testid='todo-item-label' and contains(text(), '2.Watch')]"));
+    public SelenideElement itemThirdCreated = $(By.xpath("//label[@data-testid='todo-item-label' and contains(text(), '2.Watch')]"));
+    public SelenideElement itemToggle = $("[data-testid='todo-item-toggle']");
+    public SelenideElement buttonClearCompleted = $("[class='clear-completed']");
+    ;
+
 }
