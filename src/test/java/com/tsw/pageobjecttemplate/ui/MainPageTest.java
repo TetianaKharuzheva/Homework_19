@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeOptions;
+import utils.TestDataGenerator;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
@@ -32,10 +33,9 @@ public class MainPageTest {
     @Test
     public void createNewToDoActionAndItIsShownOnTheList() {
         mainPage.inputField.click();
-        mainPage.inputField.setValue("1.Play");
+        mainPage.inputField.setValue(TestDataGenerator.generateRandomField());
         mainPage.inputField.pressEnter();
         mainPage.itemCreated.shouldBe(visible);
-        Selenide.sleep(2000);
     }
 
     @Test
@@ -47,30 +47,27 @@ public class MainPageTest {
         mainPage.inputField.setValue("2.Watch");
         mainPage.inputField.pressEnter();
         mainPage.itemSecondCreated.shouldBe(visible);
-        mainPage.inputField.setValue("3.For a walk");
+        mainPage.inputField.setValue("3.Sleep");
         mainPage.inputField.pressEnter();
         mainPage.itemThirdCreated.shouldBe(visible);
-        Selenide.sleep(2000);
     }
 
     @Test
     public void UserIsAbleToMarkTheActionAsCompleted() {
         mainPage.inputField.click();
-        mainPage.inputField.setValue("1.Play");
+        mainPage.inputField.setValue(TestDataGenerator.generateRandomField());
         mainPage.inputField.pressEnter();
         mainPage.itemToggle.click();
         mainPage.itemToggle.isSelected();
-        Selenide.sleep(2000);
     }
 
     @Test
     public void UserIsAbleToClickCleanCompleted() {
         mainPage.inputField.click();
-        mainPage.inputField.setValue("1.Play");
+        mainPage.inputField.setValue(TestDataGenerator.generateRandomField());
         mainPage.inputField.pressEnter();
         mainPage.itemToggle.click();
         mainPage.buttonClearCompleted.click();
         mainPage.itemCreated.shouldNot(visible);
-        Selenide.sleep(5000);
     }
 }
