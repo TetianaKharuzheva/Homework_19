@@ -1,7 +1,6 @@
 package com.tsw.pageobjecttemplate.ui;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.tsw.pageobjecttemplate.pages.MainPage;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeOptions;
 import utils.TestDataGenerator;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -41,15 +41,14 @@ public class MainPageTest {
     @Test
     public void createMultipleToDoActionsAndTheyAreShownOnTheList() {
         mainPage.inputField.click();
-        mainPage.inputField.setValue("1.Play");
+        mainPage.inputField.setValue(TestDataGenerator.generateRandomField());
         mainPage.inputField.pressEnter();
-        mainPage.itemFirstCreated.shouldBe(visible);
-        mainPage.inputField.setValue("2.Watch");
+        mainPage.inputField.setValue(TestDataGenerator.generateRandomField());
         mainPage.inputField.pressEnter();
-        mainPage.itemSecondCreated.shouldBe(visible);
-        mainPage.inputField.setValue("3.Sleep");
+        mainPage.inputField.setValue(TestDataGenerator.generateRandomField());
         mainPage.inputField.pressEnter();
-        mainPage.itemThirdCreated.shouldBe(visible);
+        mainPage.itemLabel.shouldHave(size(3));
+
     }
 
     @Test
